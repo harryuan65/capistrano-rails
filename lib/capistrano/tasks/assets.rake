@@ -30,7 +30,7 @@ namespace :deploy do
     on release_roles(fetch(:assets_roles)) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "'assets:clean[#{fetch(:keep_assets)}]'"
+          execute :'bin/rails', "'assets:clean[#{fetch(:keep_assets)}]'"
         end
       end
     end
@@ -41,7 +41,7 @@ namespace :deploy do
     on release_roles(fetch(:assets_roles)) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "assets:clobber"
+          execute :'bin/rails', "assets:clobber"
         end
       end
     end
@@ -66,7 +66,7 @@ namespace :deploy do
       on release_roles(fetch(:assets_roles)) do
         within release_path do
           with rails_env: fetch(:rails_env), rails_groups: fetch(:rails_assets_groups) do
-            execute :rake, "assets:precompile"
+            execute :'bin/rails', "assets:precompile"
           end
         end
       end

@@ -22,7 +22,7 @@ namespace :deploy do
     on fetch(:migration_servers) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, fetch(:migration_command)
+          execute :'bin/rails', fetch(:migration_command)
         end
       end
     end
